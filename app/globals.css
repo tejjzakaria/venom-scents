@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+:root {
+  /* Color Palette */
+  --color-primary: #8B0000; /* Deep brick-red for CTA buttons and accents */
+  --color-heading: #0F0F0F; /* Near-black for primary headings and high-contrast buttons */
+  --color-secondary-text: #555555; /* Muted charcoal for secondary text */
+  --color-background: #FEFEFE; /* Very light warm off-white */
+  --color-blush: #FFF8F8; /* Subtle blush tint alternative */
+  --color-image-bg: #F0E6FF; /* Lavender-grey for product/category image containers */
+  --color-star-rating: #008000; /* Emerald-green for star ratings */
+
+  /* Typography */
+  --font-heading: var(--font-playfair), 'Georgia', 'Times New Roman', serif; /* Sophisticated Serif for headings */
+  --font-body: 'Helvetica', 'Arial', sans-serif; /* Clean Sans-Serif for body */
+  --font-logo: 'Didot', 'Playfair Display', serif; /* Logo font */
+
+  /* Layout */
+  --border-radius-card: 12px;
+  --border-radius-button: 50px; /* Pill-shaped */
+  --max-width-container: 1280px;
+  --line-height-base: 1.6;
+
+  /* Shadows */
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@theme inline {
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-heading);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-heading);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0a0a0a;
+    --color-foreground: #ededed;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-heading);
+  font-family: var(--font-body);
+  line-height: var(--line-height-base);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  margin: 0;
+}
+
+.logo-font {
+  font-family: var(--font-logo);
+}
+
+.container {
+  max-width: var(--max-width-container);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+.card {
+  border-radius: var(--border-radius-card);
+  box-shadow: var(--shadow-soft);
+}
+
+.button {
+  border-radius: var(--border-radius-button);
+}
+
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+.drop-shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+/* Arabic locale — override every font variable so all typography uses Noto Sans Arabic */
+html[lang="ar"] {
+  --font-body:    var(--font-arabic), sans-serif;
+  --font-heading: var(--font-arabic), sans-serif;
+  --font-logo:    var(--font-arabic), sans-serif;
+}
