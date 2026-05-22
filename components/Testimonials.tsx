@@ -47,7 +47,7 @@ const Testimonials: React.FC<Props> = ({ content }) => {
         <div className="text-center mb-10 lg:mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif">
             <span className="font-bold text-black">{headlineBold}</span>{" "}
-            <span className="italic text-[#B84040]">{headlineItalic}</span>
+            <span className="italic text-[var(--color-primary)]">{headlineItalic}</span>
           </h2>
         </div>
 
@@ -86,8 +86,8 @@ const Testimonials: React.FC<Props> = ({ content }) => {
           <div className="lg:col-span-1 flex flex-col gap-4 lg:gap-6 justify-center">
             {stats.map((stat: { percent: string; text: string }, index: number) => (
               <div key={index} className="bg-[#FFF8F8] rounded-2xl lg:rounded-full p-4 lg:p-6 flex items-center gap-4 lg:gap-6">
-                <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-2 border-[#B84040] flex items-center justify-center flex-shrink-0">
-                  <span className="text-[#B84040] font-bold text-base lg:text-lg">{stat.percent}</span>
+                <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-2 border-[var(--color-primary)] flex items-center justify-center flex-shrink-0">
+                  <span className="text-[var(--color-primary)] font-bold text-base lg:text-lg">{stat.percent}</span>
                 </div>
                 <p className="text-black font-sans text-sm lg:text-base flex-1">{stat.text}</p>
               </div>

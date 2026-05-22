@@ -4,13 +4,13 @@ import type { StoreContent } from '../lib/api';
 type Props = { content?: NonNullable<StoreContent['home']>['benefits'] };
 
 const ICONS = [
-  <svg key="clock" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B84040" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg key="clock" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="10"></circle><polyline points="12,6 12,12 16,14"></polyline>
   </svg>,
-  <svg key="heart" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B84040" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg key="heart" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
   </svg>,
-  <svg key="leaf" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B84040" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg key="leaf" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
     <path d="M12 7v10"></path><path d="M9 10h6"></path>
   </svg>,
@@ -33,7 +33,7 @@ const Benefits: React.FC<Props> = ({ content }) => {
         <div className="text-center mb-10 lg:mb-16">
           <h2 className="text-2xl md:text-3xl lg:text-[36px] font-serif">
             <span className="font-bold text-black">{headlineBold}</span>{" "}
-            <span className="italic text-[#B84040]">{headlineItalic}</span>
+            <span className="italic text-[var(--color-primary)]">{headlineItalic}</span>
           </h2>
         </div>
 
@@ -45,7 +45,7 @@ const Benefits: React.FC<Props> = ({ content }) => {
               style={{ boxShadow: '0 10px 30px rgba(0,0,0,0.03)' }}
             >
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-11 h-11 lg:w-12 lg:h-12 rounded-lg border border-[#B84040] flex items-center justify-center flex-shrink-0">
+                <div className="w-11 h-11 lg:w-12 lg:h-12 rounded-lg border border-[var(--color-primary)] flex items-center justify-center flex-shrink-0">
                   {ICONS[index % ICONS.length]}
                 </div>
                 <h3 className="text-black font-bold font-sans text-base lg:text-xl">{item.title}</h3>

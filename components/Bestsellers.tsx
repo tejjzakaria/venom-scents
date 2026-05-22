@@ -21,7 +21,7 @@ const Bestsellers: React.FC<Props> = ({ products, locale }) => {
           </h2>
           <Link
             href="/shop"
-            className="hidden lg:inline-flex items-center gap-2 text-sm font-sans font-bold text-[#B84040] hover:underline transition-colors"
+            className="hidden lg:inline-flex items-center gap-2 text-sm font-sans font-bold text-[var(--color-primary)] hover:underline transition-colors"
           >
             {t.viewAll}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -57,7 +57,7 @@ const Bestsellers: React.FC<Props> = ({ products, locale }) => {
                     </div>
                   )}
                   {product.tag && (
-                    <span className="absolute top-2 left-2 bg-[#B84040] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    <span className="absolute top-2 left-2 bg-[var(--color-primary)] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                       {product.tag}
                     </span>
                   )}
@@ -91,7 +91,7 @@ const Bestsellers: React.FC<Props> = ({ products, locale }) => {
                       <span className="text-gray-400 line-through text-xs font-sans">{original.toFixed(2)}</span>
                     )}
                     {savings > 0 && (
-                      <span className="bg-[#B84040] text-white text-[10px] font-bold px-1.5 py-0.5 rounded ms-auto">
+                      <span className="bg-[var(--color-primary)] text-white text-[10px] font-bold px-1.5 py-0.5 rounded ms-auto">
                         -{savings}%
                       </span>
                     )}
@@ -99,7 +99,7 @@ const Bestsellers: React.FC<Props> = ({ products, locale }) => {
 
                   <button
                     onClick={e => e.preventDefault()}
-                    className="w-full bg-black text-white font-bold font-sans text-xs h-10 rounded-full hover:bg-[#B84040] transition-colors"
+                    className="w-full bg-black text-white font-bold font-sans text-xs h-10 rounded-full hover:bg-[var(--color-primary)] transition-colors"
                   >
                     {t.addToCart}
                   </button>
@@ -112,7 +112,7 @@ const Bestsellers: React.FC<Props> = ({ products, locale }) => {
         <div className="flex justify-center mt-8 lg:hidden">
           <Link
             href="/shop"
-            className="inline-flex items-center gap-2 text-sm font-sans font-bold text-[#B84040] border border-[#B84040] px-6 py-2.5 rounded-full hover:bg-[#FFF8F8] transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-sans font-bold text-[var(--color-primary)] border border-[var(--color-primary)] px-6 py-2.5 rounded-full hover:bg-[#FFF8F8] transition-colors"
           >
             {t.viewAll}
           </Link>

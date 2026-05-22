@@ -41,7 +41,7 @@ const Reviews: React.FC<Props> = ({ content, locale = 'en' }) => {
         <div className="text-center mb-8 lg:mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif mb-3 lg:mb-4">
             <span className="font-bold text-black">{headlineBold}</span>{" "}
-            <span className="italic text-[#B84040]">{headlineItalic}</span>
+            <span className="italic text-[var(--color-primary)]">{headlineItalic}</span>
           </h2>
           <p className="text-gray-600 font-sans text-sm md:text-base lg:text-lg max-w-2xl mx-auto px-4">{subtitle}</p>
         </div>
@@ -49,7 +49,7 @@ const Reviews: React.FC<Props> = ({ content, locale = 'en' }) => {
         <div className="flex items-center justify-center lg:justify-start gap-3 mb-8 lg:mb-12">
           <div className="flex gap-1">
             {[...Array(5)].map((_, i) => (
-              <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill="#B84040" stroke="#B84040" strokeWidth="2">
+              <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill="var(--color-primary)" stroke="var(--color-primary)" strokeWidth="2">
                 <polygon points="12,2 15,8 22,9 17,14 18,21 12,18 6,21 7,14 2,9 9,8" />
               </svg>
             ))}
@@ -78,7 +78,7 @@ const Reviews: React.FC<Props> = ({ content, locale = 'en' }) => {
                 </div>
                 <div className="flex gap-1 mb-3">
                   {[...Array(review.rating)].map((_, i) => (
-                    <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#B84040" stroke="#B84040" strokeWidth="2">
+                    <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="var(--color-primary)" stroke="var(--color-primary)" strokeWidth="2">
                       <polygon points="12,2 15,8 22,9 17,14 18,21 12,18 6,21 7,14 2,9 9,8" />
                     </svg>
                   ))}

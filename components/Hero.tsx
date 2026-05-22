@@ -45,7 +45,7 @@ const Hero: React.FC<Props> = ({ content }) => {
             {subtext}
           </p>
 
-          <button className="bg-[#B84040] text-white font-bold font-sans text-base md:text-lg w-full max-w-[300px] md:max-w-[320px] h-12 md:h-14 rounded-full mt-8 md:mt-10 hover:bg-[#A03535] transition-colors">
+          <button className="bg-[var(--color-primary)] text-white font-bold font-sans text-base md:text-lg w-full max-w-[300px] md:max-w-[320px] h-12 md:h-14 rounded-full mt-8 md:mt-10 hover:bg-[var(--color-primary-dark)] transition-colors">
             {ctaText}
           </button>
         </div>

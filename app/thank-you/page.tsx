@@ -35,7 +35,7 @@ export default async function ThankYouPage({ searchParams }: Props) {
         <div className="flex flex-col sm:flex-row items-center gap-3 w-full mt-2">
           <Link
             href="/shop"
-            className="w-full sm:w-auto flex-1 h-12 flex items-center justify-center rounded-full bg-[#B84040] text-white font-bold font-sans text-sm hover:bg-[#A03535] transition-colors"
+            className="w-full sm:w-auto flex-1 h-12 flex items-center justify-center rounded-full bg-[var(--color-primary)] text-white font-bold font-sans text-sm hover:bg-[var(--color-primary-dark)] transition-colors"
           >
             {t.continueShopping}
           </Link>

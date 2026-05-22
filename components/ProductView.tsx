@@ -16,7 +16,7 @@ function Stars({ value }: { value: number }) {
     <div className="flex gap-0.5">
       {[1, 2, 3, 4, 5].map(s => (
         <svg key={s} width="14" height="14" viewBox="0 0 24 24"
-          fill={s <= filled ? '#E84040' : 'none'} stroke="#E84040" strokeWidth="2">
+          fill={s <= filled ? 'var(--color-primary)' : 'none'} stroke="var(--color-primary)" strokeWidth="2">
           <polygon points="12,2 15,8 22,9 17,14 18,21 12,18 6,21 7,14 2,9 9,8" />
         </svg>
       ))}
@@ -182,7 +182,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
             )}
 
             {product.tag && (
-              <span className="absolute top-4 ltr:left-4 rtl:right-4 bg-[#B84040] text-white text-[10px] font-black font-sans uppercase tracking-widest px-3 py-1.5 rounded-full">
+              <span className="absolute top-4 ltr:left-4 rtl:right-4 bg-[var(--color-primary)] text-white text-[10px] font-black font-sans uppercase tracking-widest px-3 py-1.5 rounded-full">
                 {product.tag}
               </span>
             )}
@@ -196,7 +196,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
                   key={i}
                   onClick={() => setActiveImg(i)}
                   className={`flex-1 aspect-square rounded-xl overflow-hidden border-2 transition-all bg-[#F5F0F8] ${
-                    activeImg === i ? 'border-[#B84040] shadow-sm' : 'border-transparent hover:border-gray-300'
+                    activeImg === i ? 'border-[var(--color-primary)] shadow-sm' : 'border-transparent hover:border-gray-300'
                   }`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -235,7 +235,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
           {product.features.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {product.features.slice(0, 4).map((f, i) => (
-                <span key={i} className="text-[11px] font-sans font-bold text-[#B84040] bg-[#FFF8F8] border border-[#F5E6E6] px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                <span key={i} className="text-[11px] font-sans font-bold text-[var(--color-primary)] bg-[#FFF8F8] border border-[#F5E6E6] px-3.5 py-1.5 rounded-full uppercase tracking-wider">
                   {f}
                 </span>
               ))}
@@ -271,12 +271,12 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
                   onClick={() => changeTier(t)}
                   className={`relative flex flex-col items-center justify-center py-4 px-2 rounded-2xl border-2 transition-all duration-200 ${
                     tier === t
-                      ? 'bg-[#B84040] border-[#B84040] shadow-lg'
+                      ? 'bg-[var(--color-primary)] border-[var(--color-primary)] shadow-lg'
                       : 'bg-white border-gray-200 hover:border-gray-400'
                   }`}
                 >
                   {badge && (
-                    <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[#B84040] text-white text-[9px] font-black font-sans px-2 py-0.5 rounded-full whitespace-nowrap">
+                    <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[var(--color-primary)] text-white text-[9px] font-black font-sans px-2 py-0.5 rounded-full whitespace-nowrap">
                       {badge}
                     </span>
                   )}
@@ -314,7 +314,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
                   <div
                     key={scent.slug}
                     className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-all duration-150 ${
-                      isSelected ? 'border-[#B84040] bg-[#FFF8F8]' : 'border-gray-200 bg-white hover:border-gray-300'
+                      isSelected ? 'border-[var(--color-primary)] bg-[#FFF8F8]' : 'border-gray-200 bg-white hover:border-gray-300'
                     }`}
                   >
                     <div className="w-11 h-11 flex-shrink-0 rounded-lg overflow-hidden bg-[#F0EAF8]">
@@ -331,7 +331,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
                         <span className="text-[12px] font-bold font-sans text-[#0F0F0F] leading-tight">{scent.name}</span>
                         {scent.tag && (
                           <span className={`text-[9px] font-bold font-sans uppercase tracking-wider ${
-                            scent.tag.toLowerCase().includes('new') ? 'text-[#00A17C]' : 'text-[#B84040]'
+                            scent.tag.toLowerCase().includes('new') ? 'text-[#00A17C]' : 'text-[var(--color-primary)]'
                           }`}>
                             {scent.tag}
                           </span>
@@ -346,8 +346,8 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
                       onClick={() => toggleScent(scent.slug)}
                       className={`flex-shrink-0 flex items-center gap-1.5 text-[11px] font-bold font-sans px-3 py-1.5 rounded-full border transition-all duration-150 ${
                         isSelected
-                          ? 'bg-[#B84040] text-white border-[#B84040]'
-                          : 'bg-white text-[#0F0F0F] border-gray-300 hover:border-[#B84040]'
+                          ? 'bg-[var(--color-primary)] text-white border-[var(--color-primary)]'
+                          : 'bg-white text-[#0F0F0F] border-gray-300 hover:border-[var(--color-primary)]'
                       }`}
                     >
                       {isSelected ? (
@@ -373,7 +373,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
 
             {/* card header */}
             <div className="bg-[#FFF8F8] border-b border-[#F5E6E6] px-6 py-4">
-              <h3 className="font-serif font-bold text-[#B84040] text-[18px] leading-tight">{i18n.checkoutTitle}</h3>
+              <h3 className="font-serif font-bold text-[var(--color-primary)] text-[18px] leading-tight">{i18n.checkoutTitle}</h3>
               <p className="text-[11px] font-sans text-gray-400 mt-0.5">{i18n.checkoutSub}</p>
             </div>
 
@@ -396,7 +396,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
                   </div>
                   <button
                     onClick={() => { setStatus('idle'); setSelected(new Set([product.slug])); }}
-                    className="text-xs font-bold font-sans text-[#0F0F0F] underline underline-offset-2 hover:text-[#B84040] transition-colors"
+                    className="text-xs font-bold font-sans text-[#0F0F0F] underline underline-offset-2 hover:text-[var(--color-primary)] transition-colors"
                   >
                     {i18n.placeAnother}
                   </button>
@@ -417,10 +417,10 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
                   {/* error banner */}
                   {status === 'error' && (
                     <div className="flex items-start gap-2.5 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B84040" strokeWidth="2" className="flex-shrink-0 mt-0.5">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2" className="flex-shrink-0 mt-0.5">
                         <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
                       </svg>
-                      <p className="text-xs font-sans text-[#B84040]">{errorMsg}</p>
+                      <p className="text-xs font-sans text-[var(--color-primary)]">{errorMsg}</p>
                     </div>
                   )}
 
@@ -433,7 +433,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
                         placeholder={i18n.namePlaceholder}
                         value={form.name}
                         onChange={e => { setForm(f => ({ ...f, name: e.target.value })); setFieldErrors(fe => ({ ...fe, name: undefined })); }}
-                        className={`w-full h-11 px-3.5 rounded-xl border-2 text-sm font-sans text-[#0F0F0F] placeholder-gray-300 bg-white focus:outline-none focus:border-[#B84040] transition-all ${fieldErrors.name ? 'border-red-400' : 'border-gray-200'}`}
+                        className={`w-full h-11 px-3.5 rounded-xl border-2 text-sm font-sans text-[#0F0F0F] placeholder-gray-300 bg-white focus:outline-none focus:border-[var(--color-primary)] transition-all ${fieldErrors.name ? 'border-red-400' : 'border-gray-200'}`}
                       />
                       {fieldErrors.name && <p className="text-[10px] text-red-500 mt-1">{fieldErrors.name}</p>}
                     </div>
@@ -444,7 +444,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
                         placeholder={i18n.phonePlaceholder}
                         value={form.phone}
                         onChange={e => { setForm(f => ({ ...f, phone: e.target.value })); setFieldErrors(fe => ({ ...fe, phone: undefined })); }}
-                        className={`w-full h-11 px-3.5 rounded-xl border-2 text-sm font-sans text-[#0F0F0F] placeholder-gray-300 bg-white focus:outline-none focus:border-[#B84040] transition-all ${fieldErrors.phone ? 'border-red-400' : 'border-gray-200'}`}
+                        className={`w-full h-11 px-3.5 rounded-xl border-2 text-sm font-sans text-[#0F0F0F] placeholder-gray-300 bg-white focus:outline-none focus:border-[var(--color-primary)] transition-all ${fieldErrors.phone ? 'border-red-400' : 'border-gray-200'}`}
                       />
                       {fieldErrors.phone && <p className="text-[10px] text-red-500 mt-1">{fieldErrors.phone}</p>}
                     </div>
@@ -458,7 +458,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
                       rows={2}
                       value={form.address}
                       onChange={e => { setForm(f => ({ ...f, address: e.target.value })); setFieldErrors(fe => ({ ...fe, address: undefined })); }}
-                      className={`w-full px-3.5 py-3 rounded-xl border-2 text-sm font-sans text-[#0F0F0F] placeholder-gray-300 bg-white focus:outline-none focus:border-[#B84040] resize-none transition-all ${fieldErrors.address ? 'border-red-400' : 'border-gray-200'}`}
+                      className={`w-full px-3.5 py-3 rounded-xl border-2 text-sm font-sans text-[#0F0F0F] placeholder-gray-300 bg-white focus:outline-none focus:border-[var(--color-primary)] resize-none transition-all ${fieldErrors.address ? 'border-red-400' : 'border-gray-200'}`}
                     />
                     {fieldErrors.address && <p className="text-[10px] text-red-500 mt-1">{fieldErrors.address}</p>}
                   </div>
@@ -476,7 +476,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
                   <button
                     type="submit"
                     disabled={status === 'loading' || selected.size === 0}
-                    className="w-full h-14 rounded-xl bg-[#B84040] text-white font-black font-sans text-[14px] tracking-widest uppercase hover:bg-[#A03535] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-3 mt-1"
+                    className="w-full h-14 rounded-xl bg-[var(--color-primary)] text-white font-black font-sans text-[14px] tracking-widest uppercase hover:bg-[var(--color-primary-dark)] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-3 mt-1"
                   >
                     {status === 'loading' ? (
                       <>

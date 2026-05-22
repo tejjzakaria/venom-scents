@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display, Noto_Sans_Arabic } from "next/font/google";
 import "./globals.css";
@@ -44,6 +45,7 @@ export default async function RootLayout({
       lang={locale}
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
       className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${notoSansArabic.variable} h-full antialiased`}
+      style={(store?.color ? { '--color-primary': store.color } : {}) as CSSProperties}
     >
       <body className="min-h-full flex flex-col">
         <Header locale={locale} logo={store?.logo} />

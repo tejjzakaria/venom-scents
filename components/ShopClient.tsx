@@ -8,8 +8,8 @@ import { getTranslations } from '../lib/i18n';
 
 const tagColour: Record<string, string> = {
   Bestseller: 'bg-[#0F0F0F] text-white',
-  New:        'bg-[#B84040] text-white',
-  Sale:       'bg-[#B84040] text-white',
+  New:        'bg-[var(--color-primary)] text-white',
+  Sale:       'bg-[var(--color-primary)] text-white',
   'Low Stock':'bg-amber-500 text-white',
 };
 
@@ -80,7 +80,7 @@ export default function ShopClient({ products, locale }: { products: Product[]; 
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`,
         }} />
         <div className="absolute inset-0 opacity-20" style={{
-          background: 'radial-gradient(ellipse 60% 80% at 20% 50%, #8B0000 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 60% 80% at 20% 50%, var(--color-primary) 0%, transparent 70%)',
         }} />
         <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-10 py-12 md:py-20">
           <div className="flex items-center gap-2 mb-5 md:mb-6">
@@ -142,7 +142,7 @@ export default function ShopClient({ products, locale }: { products: Product[]; 
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-32 text-center">
             <div className="w-16 h-16 rounded-full bg-[#FFF8F8] flex items-center justify-center mb-4">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#B84040" strokeWidth="1.5">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.5">
                 <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
               </svg>
             </div>
@@ -227,7 +227,7 @@ export default function ShopClient({ products, locale }: { products: Product[]; 
                         <span className="text-gray-400 line-through text-xs font-sans">{original.toFixed(2)} MAD</span>
                       )}
                       {savings > 0 && (
-                        <span className="bg-[#B84040] text-white text-[10px] font-bold px-1.5 py-0.5 rounded ml-auto">
+                        <span className="bg-[var(--color-primary)] text-white text-[10px] font-bold px-1.5 py-0.5 rounded ml-auto">
                           -{savings}%
                         </span>
                       )}
@@ -254,7 +254,7 @@ export default function ShopClient({ products, locale }: { products: Product[]; 
             <h2 className="text-[#0F0F0F] font-serif font-bold text-xl md:text-3xl mb-1">{t.ctaTitle}</h2>
             <p className="text-[#555555] font-sans text-sm">{t.ctaSub}</p>
           </div>
-          <button className="bg-[#B84040] text-white font-bold font-sans text-sm px-8 py-4 rounded-full hover:bg-[#A03535] transition-colors flex-shrink-0 w-full md:w-auto">
+          <button className="bg-[var(--color-primary)] text-white font-bold font-sans text-sm px-8 py-4 rounded-full hover:bg-[var(--color-primary-dark)] transition-colors flex-shrink-0 w-full md:w-auto">
             {t.ctaButton}
           </button>
         </div>

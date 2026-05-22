@@ -2,7 +2,8 @@
 
 :root {
   /* Color Palette */
-  --color-primary: #8B0000; /* Deep brick-red for CTA buttons and accents */
+  --color-primary: #B84040; /* Brand accent — overridden at runtime by store.color */
+  --color-primary-dark: color-mix(in srgb, var(--color-primary) 85%, black);
   --color-heading: #0F0F0F; /* Near-black for primary headings and high-contrast buttons */
   --color-secondary-text: #555555; /* Muted charcoal for secondary text */
   --color-background: #FEFEFE; /* Very light warm off-white */

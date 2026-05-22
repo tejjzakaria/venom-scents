@@ -24,14 +24,14 @@ function HowToUse({ content }: { content?: NonNullable<StoreContent['product']>[
     <section className="w-full py-14 lg:py-20 bg-[#0A0A0A]">
       <div className="max-w-[1280px] mx-auto px-5 md:px-10">
         <div className="text-center mb-10 lg:mb-14">
-          <p className="text-[#B84040] font-sans text-xs uppercase tracking-[0.2em] mb-3">{eyebrow}</p>
+          <p className="text-[var(--color-primary)] font-sans text-xs uppercase tracking-[0.2em] mb-3">{eyebrow}</p>
           <h2 className="text-white font-serif font-bold text-2xl md:text-3xl lg:text-[40px] leading-[1.15]">{headline}</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((s) => (
-            <div key={s.step} className="relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-[#B84040]/40 transition-colors">
-              <span className="block text-[#B84040] font-serif font-bold text-4xl mb-4 opacity-60">{s.step}</span>
+            <div key={s.step} className="relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-[var(--color-primary)]/40 transition-colors">
+              <span className="block text-[var(--color-primary)] font-serif font-bold text-4xl mb-4 opacity-60">{s.step}</span>
               <h3 className="text-white font-bold font-sans text-base mb-2">{s.title}</h3>
               <p className="text-white/50 font-sans text-sm leading-[1.6]">{s.description}</p>
             </div>
@@ -45,10 +45,10 @@ function HowToUse({ content }: { content?: NonNullable<StoreContent['product']>[
 // ─── Why Venom ───────────────────────────────────────────────────────────────
 
 const WHY_ICONS = [
-  <svg key="ph" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B84040" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
-  <svg key="cl" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B84040" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>,
-  <svg key="vg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B84040" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>,
-  <svg key="pr" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B84040" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="12,2 15,8 22,9 17,14 18,21 12,18 6,21 7,14 2,9 9,8"/></svg>,
+  <svg key="ph" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
+  <svg key="cl" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>,
+  <svg key="vg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>,
+  <svg key="pr" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="12,2 15,8 22,9 17,14 18,21 12,18 6,21 7,14 2,9 9,8"/></svg>,
 ];
 
 const DEFAULT_WHY_ITEMS = [
@@ -67,7 +67,7 @@ function WhyVenom({ content }: { content?: NonNullable<StoreContent['product']>[
     <section className="w-full py-14 lg:py-20 bg-[#FFF8F8]">
       <div className="max-w-[1280px] mx-auto px-5 md:px-10">
         <div className="text-center mb-10 lg:mb-14">
-          <p className="text-[#B84040] font-sans text-xs uppercase tracking-[0.2em] mb-3">{eyebrow}</p>
+          <p className="text-[var(--color-primary)] font-sans text-xs uppercase tracking-[0.2em] mb-3">{eyebrow}</p>
           <h2 className="text-black font-serif font-bold text-2xl md:text-3xl lg:text-[40px] leading-[1.15]">{headline}</h2>
         </div>
 
@@ -97,10 +97,10 @@ function RelatedProducts({ products, labels }: { products: { slug: string; name:
       <div className="max-w-[1280px] mx-auto px-5 md:px-10">
         <div className="flex items-end justify-between mb-8 lg:mb-10">
           <div>
-            <p className="text-[#B84040] font-sans text-xs uppercase tracking-[0.2em] mb-2">{labels.discoverMore}</p>
+            <p className="text-[var(--color-primary)] font-sans text-xs uppercase tracking-[0.2em] mb-2">{labels.discoverMore}</p>
             <h2 className="text-[#0F0F0F] font-serif font-bold text-2xl lg:text-3xl">{labels.youMayLike}</h2>
           </div>
-          <Link href="/shop" className="hidden md:inline-flex items-center gap-1.5 text-xs font-bold font-sans text-[#B84040] hover:underline">
+          <Link href="/shop" className="hidden md:inline-flex items-center gap-1.5 text-xs font-bold font-sans text-[var(--color-primary)] hover:underline">
             {labels.viewAll}
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </Link>
@@ -127,7 +127,7 @@ function RelatedProducts({ products, labels }: { products: { slug: string; name:
                     <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs font-sans">No image</div>
                   )}
                   {p.tag && (
-                    <span className="absolute top-2 ltr:left-2 rtl:right-2 bg-[#B84040] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">{p.tag}</span>
+                    <span className="absolute top-2 ltr:left-2 rtl:right-2 bg-[var(--color-primary)] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">{p.tag}</span>
                   )}
                 </div>
                 <div className="p-4 flex flex-col flex-1">
@@ -135,7 +135,7 @@ function RelatedProducts({ products, labels }: { products: { slug: string; name:
                   <div className="flex items-center gap-2 mt-auto">
                     <span className="text-[#0F0F0F] font-bold text-sm">{price.toFixed(2)} MAD</span>
                     {original > price && <span className="text-gray-400 line-through text-xs">{original.toFixed(2)}</span>}
-                    {savings > 0 && <span className="bg-[#B84040] text-white text-[9px] font-bold px-1.5 py-0.5 rounded ms-auto">-{savings}%</span>}
+                    {savings > 0 && <span className="bg-[var(--color-primary)] text-white text-[9px] font-bold px-1.5 py-0.5 rounded ms-auto">-{savings}%</span>}
                   </div>
                 </div>
               </Link>

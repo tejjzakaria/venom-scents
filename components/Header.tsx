@@ -103,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ locale, logo }) => {
                       onClick={() => switchLocale(l)}
                       className={`text-[11px] font-sans font-semibold uppercase tracking-wider transition-colors px-1 py-0.5 ${
                         locale === l
-                          ? 'text-[#B84040]'
+                          ? 'text-[var(--color-primary)]'
                           : 'text-gray-400 hover:text-[#0F0F0F]'
                       }`}
                     >
@@ -157,12 +157,12 @@ const Header: React.FC<HeaderProps> = ({ locale, logo }) => {
                 onClick={() => setMenuOpen(false)}
                 className={`flex items-center gap-3 text-sm uppercase tracking-widest py-3 px-3 rounded-xl transition-all duration-200 ${
                   active
-                    ? 'bg-[#FFF8F8] text-[#B84040] font-bold'
-                    : 'text-[#0F0F0F] font-medium hover:bg-gray-50 hover:text-[#B84040]'
+                    ? 'bg-[#FFF8F8] text-[var(--color-primary)] font-bold'
+                    : 'text-[#0F0F0F] font-medium hover:bg-gray-50 hover:text-[var(--color-primary)]'
                 }`}
               >
                 {active && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#B84040] flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] flex-shrink-0" />
                 )}
                 {link.label}
               </Link>
@@ -178,7 +178,7 @@ const Header: React.FC<HeaderProps> = ({ locale, logo }) => {
               onClick={() => { switchLocale(l); setMenuOpen(false); }}
               className={`text-xs font-sans font-semibold uppercase tracking-wider px-2.5 py-1.5 rounded-full border transition-colors ${
                 locale === l
-                  ? 'border-[#B84040] text-[#B84040] bg-[#FFF8F8]'
+                  ? 'border-[var(--color-primary)] text-[var(--color-primary)] bg-[#FFF8F8]'
                   : 'border-gray-200 text-gray-400 hover:border-gray-400 hover:text-[#0F0F0F]'
               }`}
             >
