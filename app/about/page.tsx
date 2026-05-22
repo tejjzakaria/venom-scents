@@ -86,7 +86,7 @@ export default async function AboutPage() {
       {/* Hero */}
       <section className="relative w-full min-h-[480px] lg:min-h-[560px] flex items-center overflow-hidden bg-[#0A0A0A]">
         <Image
-          src="/images/about.webp"
+          src={ac?.hero?.image ?? '/images/about.webp'}
           alt="Venom — Our Story"
           fill
           style={{ objectFit: "cover", objectPosition: "center top" }}
@@ -149,7 +149,7 @@ export default async function AboutPage() {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden border border-[#F5E6E6]">
                 <Image
-                  src="/images/hero.webp"
+                  src={ac?.mission?.image ?? '/images/hero.webp'}
                   alt="The Venom philosophy"
                   width={720}
                   height={560}

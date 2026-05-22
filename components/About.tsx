@@ -5,9 +5,10 @@ import type { StoreContent } from '../lib/api';
 type Props = { content?: NonNullable<StoreContent['home']>['about'] };
 
 const About: React.FC<Props> = ({ content }) => {
-  const headline = content?.headline ?? "About Venom";
-  const body     = content?.body     ?? "At Venom, we're more than just a perfume brand, we're a movement. We're redefining what it means to wear a fragrance that empowers you to own every moment and make it yours.";
-  const ctaText  = content?.ctaText  ?? "Shop Now";
+  const headline    = content?.headline ?? "About Venom";
+  const body        = content?.body     ?? "At Venom, we're more than just a perfume brand, we're a movement. We're redefining what it means to wear a fragrance that empowers you to own every moment and make it yours.";
+  const ctaText     = content?.ctaText  ?? "Shop Now";
+  const aboutImage  = content?.image    ?? '/images/about.webp';
 
   return (
     <section className="w-full py-14 lg:py-24 bg-[#FFF8F8]">
@@ -16,7 +17,7 @@ const About: React.FC<Props> = ({ content }) => {
           <div className="lg:col-span-1">
             <div className="relative overflow-hidden rounded-xl border border-[#F5E6E6] w-full">
               <Image
-                src="/images/about.webp"
+                src={aboutImage}
                 alt="About Venom"
                 width={800}
                 height={1000}

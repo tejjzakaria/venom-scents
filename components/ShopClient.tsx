@@ -36,7 +36,7 @@ function formatCount(s: string): string {
   return n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n);
 }
 
-export default function ShopClient({ products, locale }: { products: Product[]; locale: Locale }) {
+export default function ShopClient({ products, locale, heroImage }: { products: Product[]; locale: Locale; heroImage?: string }) {
   const tr  = getTranslations(locale);
   const t   = tr.shop;
   const allLabel = tr.collection.allProducts;
@@ -76,6 +76,10 @@ export default function ShopClient({ products, locale }: { products: Product[]; 
 
       {/* ── Page Hero ───────────────────────────────────────────────── */}
       <div className="relative bg-[#0A0A0A] overflow-hidden">
+        {heroImage && (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img src={heroImage} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover opacity-30" />
+        )}
         <div className="absolute inset-0 opacity-[0.07]" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`,
         }} />

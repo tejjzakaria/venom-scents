@@ -9,11 +9,12 @@ const Hero: React.FC<Props> = ({ content }) => {
   const subtext     = content?.subtext     ?? "Scents crafted to turn heads and leave a lasting impression.";
   const ctaText     = content?.ctaText     ?? "Shop Now";
   const socialProof = content?.socialProof ?? "4.5/5 From 125,000+ Customers";
+  const heroImage   = content?.image       ?? '/images/hero.webp';
 
   return (
     <section className="relative w-full overflow-hidden min-h-[520px] md:min-h-[620px]">
       <Image
-        src="/images/hero.webp"
+        src={heroImage}
         alt="Hero background"
         fill
         priority

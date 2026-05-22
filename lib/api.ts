@@ -9,11 +9,13 @@ export type StoreContent = {
       subtext?:     string;
       ctaText?:     string;
       socialProof?: string;
+      image?:       string;
     };
     about?: {
       headline?: string;
       body?:     string;
       ctaText?:  string;
+      image?:    string;
     };
     testimonials?: {
       headlineBold?:   string;
@@ -46,6 +48,7 @@ export type StoreContent = {
       eyebrow?:  string;
       headline?: string;
       subtitle?: string;
+      image?:    string;
     };
     stats?: Array<{ value: string; label: string }>;
     mission?: {
@@ -55,6 +58,7 @@ export type StoreContent = {
       body1?:          string;
       body2?:          string;
       ctaText?:        string;
+      image?:          string;
     };
     values?: {
       eyebrow?:        string;
@@ -73,6 +77,11 @@ export type StoreContent = {
       subtitle?:     string;
       primaryCta?:   string;
       secondaryCta?: string;
+    };
+  };
+  shop?: {
+    hero?: {
+      image?: string;
     };
   };
   contact?: {
