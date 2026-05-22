@@ -27,6 +27,9 @@ const Footer = async ({ locale }: { locale: Locale }) => {
   ]);
 
   const sc           = store?.content?.[locale] ?? store?.content?.['en'];
+  const logoValue    = store?.logo;
+  const isImgLogo    = !!logoValue && (logoValue.startsWith('http') || logoValue.startsWith('/'));
+  const brandName    = isImgLogo ? (store?.name ?? 'VENOM') : (logoValue ?? 'VENOM');
   const instagramRaw = sc?.contact?.instagram ?? null;
   const instagramHandle = instagramRaw?.replace(/^@/, '') ?? null;
   const phone        = store?.phone ?? null;
@@ -42,7 +45,10 @@ const Footer = async ({ locale }: { locale: Locale }) => {
 
           {/* Left — Brand */}
           <div className="text-start">
-            <h2 className="text-2xl lg:text-3xl font-serif font-bold mb-2">VENOM</h2>
+            {isImgLogo
+              ? <img src={logoValue} alt="logo" className="h-10 w-auto object-contain mb-2" />
+              : <h2 className="text-2xl lg:text-3xl font-serif font-bold mb-2">{brandName}</h2>
+            }
             <p className="text-xs text-gray-400 font-sans">{t.tagline}</p>
           </div>
 
@@ -73,7 +79,7 @@ const Footer = async ({ locale }: { locale: Locale }) => {
                 </a>
               )}
             </div>
-            <p className="text-[10px] text-gray-500 font-sans">© {new Date().getFullYear()} VENOM</p>
+            <p className="text-[10px] text-gray-500 font-sans">© {new Date().getFullYear()} {brandName}</p>
           </div>
         </div>
 
@@ -82,7 +88,10 @@ const Footer = async ({ locale }: { locale: Locale }) => {
 
           {/* Brand */}
           <div className="text-center">
-            <h2 className="text-2xl font-serif font-bold mb-2">VENOM</h2>
+            {isImgLogo
+              ? <img src={logoValue} alt="logo" className="h-10 w-auto object-contain mb-2 mx-auto" />
+              : <h2 className="text-2xl font-serif font-bold mb-2">{brandName}</h2>
+            }
             <p className="text-xs text-gray-400 font-sans">{t.tagline}</p>
           </div>
 
@@ -111,7 +120,7 @@ const Footer = async ({ locale }: { locale: Locale }) => {
                 </a>
               )}
             </div>
-            <p className="text-[10px] text-gray-500 font-sans">© {new Date().getFullYear()} VENOM</p>
+            <p className="text-[10px] text-gray-500 font-sans">© {new Date().getFullYear()} {brandName}</p>
           </div>
         </div>
 

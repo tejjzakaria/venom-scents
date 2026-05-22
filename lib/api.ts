@@ -104,6 +104,7 @@ export type StoreInfo = {
   currency?: string;
   color:     string;
   initials:  string;
+  logo?:     string;
   content?:  Record<string, StoreContent>;
 };
 

@@ -46,7 +46,7 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${notoSansArabic.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Header locale={locale} />
+        <Header locale={locale} logo={store?.logo} />
         {children}
         <Footer locale={locale} />
         {store?.phone && <WhatsAppWidget phone={store.phone} />}

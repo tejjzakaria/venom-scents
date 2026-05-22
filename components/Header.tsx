@@ -10,9 +10,17 @@ import { getTranslations } from '../lib/i18n';
 
 interface HeaderProps {
   locale: Locale;
+  logo?:  string;
 }
 
-const Header: React.FC<HeaderProps> = ({ locale }) => {
+function LogoMark({ logo, className }: { logo?: string; className: string }) {
+  if (logo && (logo.startsWith('http') || logo.startsWith('/'))) {
+    return <img src={logo} alt="logo" className="h-8 w-auto object-contain" />;
+  }
+  return <span className={className}>{logo ?? 'VENOM'}</span>;
+}
+
+const Header: React.FC<HeaderProps> = ({ locale, logo }) => {
   const router                  = useRouter();
   const pathname                = usePathname();
   const [, startTransition]     = useTransition();
@@ -80,8 +88,8 @@ const Header: React.FC<HeaderProps> = ({ locale }) => {
 
             {/* Center — Logo */}
             <div className="flex-1 flex justify-center">
-              <Link href="/" className="text-black font-serif font-bold text-2xl md:text-3xl logo-font">
-                VENOM
+              <Link href="/">
+                <LogoMark logo={logo} className="text-black font-serif font-bold text-2xl md:text-3xl logo-font" />
               </Link>
             </div>
 
@@ -123,7 +131,9 @@ const Header: React.FC<HeaderProps> = ({ locale }) => {
       >
         {/* Drawer Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
-          <Link href="/" onClick={() => setMenuOpen(false)} className="text-black font-serif font-bold text-xl logo-font">VENOM</Link>
+          <Link href="/" onClick={() => setMenuOpen(false)}>
+            <LogoMark logo={logo} className="text-black font-serif font-bold text-xl logo-font" />
+          </Link>
           <button
             onClick={() => setMenuOpen(false)}
             aria-label="Close menu"
