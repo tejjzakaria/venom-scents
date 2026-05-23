@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Playfair_Display, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -24,10 +25,12 @@ const playfairDisplay = Playfair_Display({
   weight: ["400", "700"],
 });
 
-const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
+const ibmPlexSansArabic = localFont({
   variable: "--font-arabic",
-  subsets: ["arabic"],
-  weight: ["400", "700"],
+  src: [
+    { path: "../public/fonts/IBMPlexSansArabic-Regular.ttf", weight: "400", style: "normal" },
+    { path: "../public/fonts/IBMPlexSansArabic-Bold.ttf",    weight: "700", style: "normal" },
+  ],
 });
 
 export const metadata: Metadata = {
