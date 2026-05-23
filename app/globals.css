@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('/fonts/IBMPlexSansArabic-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('/fonts/IBMPlexSansArabic-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Color Palette */
   --color-primary: #B84040; /* Brand accent — overridden at runtime by store.color */
@@ -99,7 +115,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Arabic locale — override every font variable so all typography uses Noto Sans Arabic */
 html[lang="ar"] {
-  --font-body:    var(--font-arabic), sans-serif;
-  --font-heading: var(--font-arabic), sans-serif;
-  --font-logo:    var(--font-arabic), sans-serif;
+  --font-body:    'IBM Plex Sans Arabic', sans-serif;
+  --font-heading: 'IBM Plex Sans Arabic', sans-serif;
+  --font-logo:    'IBM Plex Sans Arabic', sans-serif;
 }

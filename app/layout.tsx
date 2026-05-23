@@ -1,7 +1,6 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -25,13 +24,6 @@ const playfairDisplay = Playfair_Display({
   weight: ["400", "700"],
 });
 
-const ibmPlexSansArabic = localFont({
-  variable: "--font-arabic",
-  src: [
-    { path: "../public/fonts/IBMPlexSansArabic-Regular.ttf", weight: "400", style: "normal" },
-    { path: "../public/fonts/IBMPlexSansArabic-Bold.ttf",    weight: "700", style: "normal" },
-  ],
-});
 
 export const metadata: Metadata = {
   title: "Venom Scents",
@@ -47,7 +39,7 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
-      className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${ibmPlexSansArabic.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} h-full antialiased`}
       style={(store?.color ? { '--color-primary': store.color } : {}) as CSSProperties}
     >
       <body className="min-h-full flex flex-col">
