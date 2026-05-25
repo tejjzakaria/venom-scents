@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getStore } from "../../lib/api";
+import { getStore, resolveContent } from "../../lib/api";
 import { getLocale } from "../actions/locale";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [store, locale] = await Promise.all([getStore(), getLocale()]);
-  const ac = (store?.content?.[locale] ?? store?.content?.['en'])?.about;
+  const ac = resolveContent(store, locale)?.about;
   return { title: ac?.hero?.headline ?? 'About' };
 }
 
@@ -47,7 +47,7 @@ const DEFAULT_TIMELINE = [
 
 export default async function AboutPage() {
   const [store, locale] = await Promise.all([getStore(), getLocale()]);
-  const ac = (store?.content?.[locale] ?? store?.content?.['en'])?.about;
+  const ac = resolveContent(store, locale)?.about;
 
   const hero = {
     eyebrow:  ac?.hero?.eyebrow  ?? "Our Story",

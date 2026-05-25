@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getStore } from "../../lib/api";
+import { getStore, resolveContent } from "../../lib/api";
 import { getLocale } from "../actions/locale";
 import { getTranslations } from "../../lib/i18n";
 
@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ContactPage() {
   const [store, locale] = await Promise.all([getStore(), getLocale()]);
-  const storeContent = store?.content?.[locale] ?? store?.content?.['en'];
+  const storeContent = resolveContent(store, locale);
   const ct = getTranslations(locale).contact;
 
   const channels = [

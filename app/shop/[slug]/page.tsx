@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getProduct, getProducts, getStore } from '../../../lib/api';
+import { getProduct, getProducts, getStore, resolveContent } from '../../../lib/api';
 import { getLocale } from '../../actions/locale';
 import ProductView from '../../../components/ProductView';
 import type { StoreContent } from '../../../lib/api';
@@ -172,7 +172,7 @@ export default async function ProductPage({
 
   if (!product || product.status !== 'Active') notFound();
 
-  const sc = (store?.content?.[locale] ?? store?.content?.['en'])?.product;
+  const sc = resolveContent(store, locale)?.product;
   const pt = getTranslations(locale).productPage;
 
   const scents = all.filter(p => p.slug !== product.slug);

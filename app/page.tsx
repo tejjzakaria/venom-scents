@@ -1,4 +1,4 @@
-import { getStore, getProducts } from "../lib/api";
+import { getStore, getProducts, resolveContent } from "../lib/api";
 import { getLocale } from "./actions/locale";
 import Hero from "../components/Hero";
 import Collection, { BG_COLORS } from "../components/Collection";
@@ -14,11 +14,9 @@ export default async function Home() {
     getLocale(),
     getProducts(),
   ]);
-  const c          = (store?.content?.[locale] ?? store?.content?.['en'])?.home;
-  const enReviews  = store?.content?.['en']?.home?.reviews;
-  const reviewsContent = c?.reviews
-    ? { ...c.reviews, items: c.reviews.items?.length ? c.reviews.items : enReviews?.items }
-    : enReviews;
+  const sc         = resolveContent(store, locale);
+  const c          = sc?.home;
+  const reviewsContent = c?.reviews ?? undefined;
 
   // Derive category cards — one card per unique category using first product image
   const categoryMap = new Map<string, string>();

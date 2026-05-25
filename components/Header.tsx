@@ -9,8 +9,9 @@ import { getTranslations } from '../lib/i18n';
 
 
 interface HeaderProps {
-  locale: Locale;
-  logo?:  string;
+  locale:           Locale;
+  logo?:            string;
+  availableLocales?: string[];
 }
 
 function LogoMark({ logo, className }: { logo?: string; className: string }) {
@@ -20,7 +21,8 @@ function LogoMark({ logo, className }: { logo?: string; className: string }) {
   return <span className={className}>{logo ?? 'VENOM'}</span>;
 }
 
-const Header: React.FC<HeaderProps> = ({ locale, logo }) => {
+const Header: React.FC<HeaderProps> = ({ locale, logo, availableLocales }) => {
+  const multiLingual = !availableLocales || availableLocales.length > 1;
   const router                  = useRouter();
   const pathname                = usePathname();
   const [, startTransition]     = useTransition();
@@ -95,23 +97,25 @@ const Header: React.FC<HeaderProps> = ({ locale, logo }) => {
 
             {/* Right — Language switcher */}
             <div className="flex items-center gap-6 pe-4 md:pe-6">
-              <div className="flex items-center gap-0.5">
-                {(['en', 'fr', 'ar'] as const).map((l, i) => (
-                  <React.Fragment key={l}>
-                    {i > 0 && <span className="text-gray-200 text-[10px] select-none px-0.5">|</span>}
-                    <button
-                      onClick={() => switchLocale(l)}
-                      className={`text-[11px] font-sans font-semibold uppercase tracking-wider transition-colors px-1 py-0.5 ${
-                        locale === l
-                          ? 'text-[var(--color-primary)]'
-                          : 'text-gray-400 hover:text-[#0F0F0F]'
-                      }`}
-                    >
-                      {l.toUpperCase()}
-                    </button>
-                  </React.Fragment>
-                ))}
-              </div>
+              {multiLingual && (
+                <div className="flex items-center gap-0.5">
+                  {(['en', 'fr', 'ar'] as const).map((l, i) => (
+                    <React.Fragment key={l}>
+                      {i > 0 && <span className="text-gray-200 text-[10px] select-none px-0.5">|</span>}
+                      <button
+                        onClick={() => switchLocale(l)}
+                        className={`text-[11px] font-sans font-semibold uppercase tracking-wider transition-colors px-1 py-0.5 ${
+                          locale === l
+                            ? 'text-[var(--color-primary)]'
+                            : 'text-gray-400 hover:text-[#0F0F0F]'
+                        }`}
+                      >
+                        {l.toUpperCase()}
+                      </button>
+                    </React.Fragment>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -170,22 +174,23 @@ const Header: React.FC<HeaderProps> = ({ locale, logo }) => {
           })}
         </nav>
 
-        {/* Drawer — Language switcher */}
-        <div className="flex items-center gap-2 px-6 pt-6 mt-auto pb-8 border-t border-gray-100">
-          {(['en', 'fr', 'ar'] as const).map((l) => (
-            <button
-              key={l}
-              onClick={() => { switchLocale(l); setMenuOpen(false); }}
-              className={`text-xs font-sans font-semibold uppercase tracking-wider px-2.5 py-1.5 rounded-full border transition-colors ${
-                locale === l
-                  ? 'border-[var(--color-primary)] text-[var(--color-primary)] bg-[#FFF8F8]'
-                  : 'border-gray-200 text-gray-400 hover:border-gray-400 hover:text-[#0F0F0F]'
-              }`}
-            >
-              {l.toUpperCase()}
-            </button>
-          ))}
-        </div>
+        {multiLingual && (
+          <div className="flex items-center gap-2 px-6 pt-6 mt-auto pb-8 border-t border-gray-100">
+            {(['en', 'fr', 'ar'] as const).map((l) => (
+              <button
+                key={l}
+                onClick={() => { switchLocale(l); setMenuOpen(false); }}
+                className={`text-xs font-sans font-semibold uppercase tracking-wider px-2.5 py-1.5 rounded-full border transition-colors ${
+                  locale === l
+                    ? 'border-[var(--color-primary)] text-[var(--color-primary)] bg-[#FFF8F8]'
+                    : 'border-gray-200 text-gray-400 hover:border-gray-400 hover:text-[#0F0F0F]'
+                }`}
+              >
+                {l.toUpperCase()}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

@@ -110,6 +110,19 @@ export type StoreContent = {
   };
 };
 
+import type { Locale } from './locale';
+
+const VALID_LOCALES: Locale[] = ['en', 'fr', 'ar'];
+
+export function resolveContent(store: StoreInfo | null, locale: Locale): StoreContent | undefined {
+  if (!store?.content) return undefined;
+  return store.content[locale] ?? Object.values(store.content)[0];
+}
+
+export function getAvailableLocales(store: StoreInfo | null): Locale[] {
+  return Object.keys(store?.content ?? {}).filter((l): l is Locale => VALID_LOCALES.includes(l as Locale));
+}
+
 export type StoreInfo = {
   _id:       string;
   name:      string;

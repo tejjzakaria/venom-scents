@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { getProducts, getStore } from '../../lib/api';
+import { getProducts, getStore, resolveContent } from '../../lib/api';
 import ShopClient from '../../components/ShopClient';
 import { getLocale } from '../actions/locale';
 
 export async function generateMetadata(): Promise<Metadata> {
   const [store, locale] = await Promise.all([getStore(), getLocale()]);
-  const sc = store?.content?.[locale] ?? store?.content?.['en'];
+  const sc = resolveContent(store, locale);
   return { title: sc?.shop?.hero?.title ?? 'Shop' };
 }
 

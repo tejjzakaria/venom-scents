@@ -6,7 +6,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import WhatsAppWidget from "../components/WhatsAppWidget";
 import { getLocale } from "./actions/locale";
-import { getStore } from "../lib/api";
+import { getStore, getAvailableLocales } from "../lib/api";
+import type { Locale } from "../lib/locale";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,18 +39,20 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const [locale, store] = await Promise.all([getLocale(), getStore()]);
+  const availableLocales = getAvailableLocales(store);
+  const effectiveLocale: Locale = availableLocales.length === 1 ? availableLocales[0] : locale;
 
   return (
     <html
-      lang={locale}
-      dir={locale === 'ar' ? 'rtl' : 'ltr'}
+      lang={effectiveLocale}
+      dir={effectiveLocale === 'ar' ? 'rtl' : 'ltr'}
       className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} h-full antialiased`}
       style={(store?.color ? { '--color-primary': store.color } : {}) as CSSProperties}
     >
       <body className="min-h-full flex flex-col">
-        <Header locale={locale} logo={store?.logo} />
+        <Header locale={effectiveLocale} logo={store?.logo} availableLocales={availableLocales} />
         {children}
-        <Footer locale={locale} />
+        <Footer locale={effectiveLocale} />
         {store?.phone && <WhatsAppWidget phone={store.phone} />}
       </body>
     </html>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { getTranslations } from '../lib/i18n';
-import { getStore } from '../lib/api';
+import { getStore, resolveContent } from '../lib/api';
 import type { Locale } from '../lib/locale';
 
 function IconInstagram() {
@@ -26,7 +26,7 @@ const Footer = async ({ locale }: { locale: Locale }) => {
     getStore(),
   ]);
 
-  const sc           = store?.content?.[locale] ?? store?.content?.['en'];
+  const sc           = resolveContent(store, locale);
   const logoValue    = store?.logo;
   const isImgLogo    = !!logoValue && (logoValue.startsWith('http') || logoValue.startsWith('/'));
   const brandName    = isImgLogo ? (store?.name ?? 'VENOM') : (logoValue ?? 'VENOM');
