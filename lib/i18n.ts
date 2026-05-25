@@ -116,7 +116,7 @@ const dict: Record<Locale, Translations> = {
     announcementBar: "SOLDES DE PRINTEMPS — JUSQU'À 60% DE RÉDUCTION",
     nav: { home: 'Accueil', shop: 'Boutique', about: 'À Propos', contact: 'Contact' },
     footer: { tagline: "Redéfinir l'attrait, un parfum à la fois.", shopAll: 'Voir tout', ourStory: 'Notre Histoire', home: 'Accueil', contact: 'Contact' },
-    collection: { title: 'Collection Venom', allProducts: 'Tous les Produits' },
+    collection: { title: 'Notre Collection', allProducts: 'Tous les Produits' },
     bestsellers: { title: 'Nos Meilleures Ventes', viewAll: 'Voir tous les produits', addToCart: 'Ajouter au Panier' },
     shop: {
       title: 'La Collection',
@@ -174,7 +174,7 @@ const dict: Record<Locale, Translations> = {
     announcementBar: 'تخفيضات الربيع — حتى 60% خصم',
     nav: { home: 'الرئيسية', shop: 'المتجر', about: 'من نحن', contact: 'تواصل معنا' },
     footer: { tagline: 'نعيد تعريف الجاذبية، عطراً في كل مرة.', shopAll: 'تسوق الكل', ourStory: 'قصتنا', home: 'الرئيسية', contact: 'تواصل معنا' },
-    collection: { title: 'مجموعة فينوم', allProducts: 'جميع المنتجات' },
+    collection: { title: 'مجموعتنا', allProducts: 'جميع المنتجات' },
     bestsellers: { title: 'الأكثر مبيعاً', viewAll: 'عرض جميع المنتجات', addToCart: 'أضف إلى السلة' },
     shop: {
       title: 'المجموعة',
