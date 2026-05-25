@@ -55,8 +55,8 @@ const Testimonials: React.FC<Props> = ({ content }) => {
           <div className="lg:col-span-1">
             <div className="flex gap-4 overflow-x-auto pb-4 px-2 lg:px-0 snap-x snap-mandatory">
               {testimonials.map((t, index) => (
-                <div key={index} className="flex-shrink-0 w-[160px] md:w-[200px] snap-start">
-                  <div className="relative aspect-[9/16] rounded-xl overflow-hidden mb-3">
+                <div key={index} className="flex-shrink-0 w-[160px] md:w-[200px] snap-start flex flex-col">
+                  <div className="relative aspect-[9/16] rounded-xl overflow-hidden mb-3 flex-shrink-0">
                     <video
                       ref={(el) => { videoRefs.current[index] = el; }}
                       src={t.video}
@@ -77,7 +77,7 @@ const Testimonials: React.FC<Props> = ({ content }) => {
                       </button>
                     </div>
                   </div>
-                  <p className="text-xs italic text-black font-sans text-center">"{t.quote}"</p>
+                  <p className="flex-1 text-xs italic text-black font-sans text-center">"{t.quote}"</p>
                 </div>
               ))}
             </div>

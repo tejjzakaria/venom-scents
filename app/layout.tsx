@@ -32,6 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title:       { default: name, template: `%s | ${name}` },
     description: store?.desc ?? 'Premium fragrances crafted to turn heads.',
+    icons:       { icon: store?.favicon || '/favicon.ico' },
   };
 }
 

@@ -58,7 +58,7 @@ const dict: Record<Locale, Translations> = {
     announcementBar: 'SPRING SALE — UP TO 60% OFF',
     nav: { home: 'Home', shop: 'Shop', about: 'About', contact: 'Contact' },
     footer: { tagline: 'Redefining allure, one scent at a time.', shopAll: 'Shop All', ourStory: 'Our Story', home: 'Home', contact: 'Contact' },
-    collection: { title: 'Venom Collection', allProducts: 'All Products' },
+    collection: { title: 'Our Collection', allProducts: 'All Products' },
     bestsellers: { title: 'Our Bestsellers', viewAll: 'View all products', addToCart: 'Add To Cart' },
     shop: {
       title: 'The Collection',

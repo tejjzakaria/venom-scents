@@ -135,6 +135,7 @@ export type StoreInfo = {
   color:     string;
   initials:  string;
   logo?:     string;
+  favicon?:  string;
   content?:  Record<string, StoreContent>;
 };
 
