@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getProduct, getProducts, getStore } from '../../../lib/api';
@@ -5,6 +6,12 @@ import { getLocale } from '../../actions/locale';
 import ProductView from '../../../components/ProductView';
 import type { StoreContent } from '../../../lib/api';
 import { getTranslations } from '../../../lib/i18n';
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const product  = await getProduct(slug);
+  return { title: product?.name ?? 'Product' };
+}
 
 // ─── How to Use ──────────────────────────────────────────────────────────────
 

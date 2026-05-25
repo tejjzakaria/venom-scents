@@ -1,6 +1,13 @@
+import type { Metadata } from 'next';
 import { getProducts, getStore } from '../../lib/api';
 import ShopClient from '../../components/ShopClient';
 import { getLocale } from '../actions/locale';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const [store, locale] = await Promise.all([getStore(), getLocale()]);
+  const sc = store?.content?.[locale] ?? store?.content?.['en'];
+  return { title: sc?.shop?.hero?.title ?? 'Shop' };
+}
 
 export default async function ShopPage() {
   const [products, locale, store] = await Promise.all([getProducts(), getLocale(), getStore()]);
@@ -14,9 +21,6 @@ export default async function ShopPage() {
       heroTitle={shop?.hero?.title}
       heroSubtitle={shop?.hero?.subtitle}
       heroStatsText={shop?.hero?.statsText}
-      ctaTitle={shop?.cta?.title}
-      ctaSubtitle={shop?.cta?.subtitle}
-      ctaButton={shop?.cta?.button}
     />
   );
 }

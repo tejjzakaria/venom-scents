@@ -25,10 +25,14 @@ const playfairDisplay = Playfair_Display({
 });
 
 
-export const metadata: Metadata = {
-  title: "Venom Scents",
-  description: "Premium fragrances crafted to turn heads.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const store = await getStore();
+  const name  = store?.name ?? 'Venom Scents';
+  return {
+    title:       { default: name, template: `%s | ${name}` },
+    description: store?.desc ?? 'Premium fragrances crafted to turn heads.',
+  };
+}
 
 export default async function RootLayout({
   children,

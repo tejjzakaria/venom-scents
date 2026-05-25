@@ -1,6 +1,9 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getLocale } from '../actions/locale';
 import { getTranslations } from '../../lib/i18n';
+
+export const metadata: Metadata = { title: 'Order Confirmed' };
 
 type Props = { searchParams: Promise<{ order?: string }> };
 

@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { getStore } from "../../lib/api";
 import { getLocale } from "../actions/locale";
 import { getTranslations } from "../../lib/i18n";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const store = await getStore();
+  return { title: `Contact ${store?.name ?? ''}`.trim() };
+}
 
 export default async function ContactPage() {
   const [store, locale] = await Promise.all([getStore(), getLocale()]);

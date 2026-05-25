@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getStore } from "../../lib/api";
 import { getLocale } from "../actions/locale";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const [store, locale] = await Promise.all([getStore(), getLocale()]);
+  const ac = (store?.content?.[locale] ?? store?.content?.['en'])?.about;
+  return { title: ac?.hero?.headline ?? 'About' };
+}
 
 const VALUE_ICONS = [
   <svg key="shield" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

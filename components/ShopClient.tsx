@@ -36,16 +36,13 @@ function formatCount(s: string): string {
   return n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n);
 }
 
-export default function ShopClient({ products, locale, heroImage, heroTitle, heroSubtitle, heroStatsText, ctaTitle, ctaSubtitle, ctaButton }: {
+export default function ShopClient({ products, locale, heroImage, heroTitle, heroSubtitle, heroStatsText }: {
   products: Product[];
   locale: Locale;
   heroImage?: string;
   heroTitle?: string;
   heroSubtitle?: string;
   heroStatsText?: string;
-  ctaTitle?: string;
-  ctaSubtitle?: string;
-  ctaButton?: string;
 }) {
   const tr  = getTranslations(locale);
   const t   = tr.shop;
@@ -261,18 +258,6 @@ export default function ShopClient({ products, locale, heroImage, heroTitle, her
         )}
       </div>
 
-      {/* ── Bottom CTA ──────────────────────────────────────────────── */}
-      <div className="mt-auto bg-[#FFF8F8] border-t border-[#F5E6E6]">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-10 md:py-14 flex flex-col md:flex-row items-center justify-between gap-5 md:gap-6 text-center md:text-start">
-          <div>
-            <h2 className="text-[#0F0F0F] font-serif font-bold text-xl md:text-3xl mb-1">{ctaTitle ?? t.ctaTitle}</h2>
-            <p className="text-[#555555] font-sans text-sm">{ctaSubtitle ?? t.ctaSub}</p>
-          </div>
-          <button className="bg-[var(--color-primary)] text-white font-bold font-sans text-sm px-8 py-4 rounded-full hover:bg-[var(--color-primary-dark)] transition-colors flex-shrink-0 w-full md:w-auto">
-            {ctaButton ?? t.ctaButton}
-          </button>
-        </div>
-      </div>
 
     </div>
   );
