@@ -81,7 +81,15 @@ export type StoreContent = {
   };
   shop?: {
     hero?: {
-      image?: string;
+      image?:     string;
+      title?:     string;
+      subtitle?:  string;
+      statsText?: string;
+    };
+    cta?: {
+      title?:    string;
+      subtitle?: string;
+      button?:   string;
     };
   };
   contact?: {
