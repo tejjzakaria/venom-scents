@@ -124,6 +124,15 @@ export function getAvailableLocales(store: StoreInfo | null): Locale[] {
   return Object.keys(store?.content ?? {}).filter((l): l is Locale => VALID_LOCALES.includes(l as Locale));
 }
 
+export type StorePixels = {
+  metaPixelId?: string;
+  snapPixelId?: string;
+  ttPixelId?:   string;
+  ga4Id?:       string;
+  gtmId?:       string;
+  pinterestId?: string;
+};
+
 export type StoreInfo = {
   _id:       string;
   name:      string;
@@ -137,6 +146,7 @@ export type StoreInfo = {
   initials:  string;
   logo?:     string;
   favicon?:  string;
+  pixels?:   StorePixels;
   content?:  Record<string, StoreContent>;
 };
 

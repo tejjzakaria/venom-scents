@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import WhatsAppWidget from "../components/WhatsAppWidget";
+import PixelScripts from "../components/PixelScripts";
 import { getLocale } from "./actions/locale";
 import { getStore, getAvailableLocales } from "../lib/api";
 import type { Locale } from "../lib/locale";
@@ -51,10 +52,19 @@ export default async function RootLayout({
       style={(store?.color ? { '--color-primary': store.color } : {}) as CSSProperties}
     >
       <body className="min-h-full flex flex-col">
+        {store?.pixels?.gtmId && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${store.pixels.gtmId.replace(/[^a-zA-Z0-9_-]/g, '')}`}
+              height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+        )}
         <Header locale={effectiveLocale} logo={store?.logo} availableLocales={availableLocales} />
         {children}
         <Footer locale={effectiveLocale} />
         {store?.phone && <WhatsAppWidget phone={store.phone} />}
+        <PixelScripts pixels={store?.pixels} />
       </body>
     </html>
   );
