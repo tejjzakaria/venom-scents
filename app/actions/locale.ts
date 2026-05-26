@@ -14,5 +14,5 @@ export async function setLocale(locale: string): Promise<void> {
 export async function getLocale(): Promise<Locale> {
   const jar = await cookies();
   const val = jar.get('locale')?.value;
-  return VALID.includes(val ?? '') ? (val as Locale) : 'en';
+  return VALID.includes(val ?? '') ? (val as Locale) : 'ar';
 }
