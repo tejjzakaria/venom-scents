@@ -70,7 +70,6 @@ export default function ProductView({ product, locale = 'en' }: { product: Produ
   const [form,        setForm]        = useState({ name: '', phone: '', address: '', payment: 'cash' });
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof typeof form, string>>>({});
 
-  const total = price;
 
   function validate() {
     const errs: Partial<Record<keyof typeof form, string>> = {};
@@ -288,14 +287,6 @@ export default function ProductView({ product, locale = 'en' }: { product: Produ
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
-                  {/* order summary */}
-                  <div className="flex items-center justify-between bg-gray-50 rounded-xl px-4 py-3">
-                    <span className="text-sm font-sans text-gray-500 line-clamp-1 flex-1 me-3">
-                      {selectedOffer ?? product.name}
-                    </span>
-                    <span className="font-black font-sans text-[#0F0F0F] text-[16px] flex-shrink-0">{total.toFixed(2)} MAD</span>
-                  </div>
-
                   {/* error banner */}
                   {status === 'error' && (
                     <div className="flex items-start gap-2.5 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
@@ -366,7 +357,7 @@ export default function ProductView({ product, locale = 'en' }: { product: Produ
                         {i18n.placingOrder}
                       </>
                     ) : (
-                      `${i18n.placeOrder} — ${total.toFixed(2)} MAD`
+                      i18n.placeOrder
                     )}
                   </button>
 
