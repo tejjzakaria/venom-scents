@@ -48,14 +48,6 @@ function IconReturn() {
   );
 }
 
-type BundleTier = 1 | 2 | 3;
-
-function bundleUnitPrice(base: number, tier: BundleTier): number {
-  if (tier === 2) return Math.round(base * 0.875 * 100) / 100;
-  if (tier === 3) return Math.round(base * 0.694 * 100) / 100;
-  return base;
-}
-
 // ─── main component ──────────────────────────────────────────────────────────
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
@@ -70,7 +62,6 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
   const reviewCount = parseInt(product.reviews, 10) || 0;
 
   const [activeImg, setActiveImg]     = useState(0);
-  const [tier, setTier]               = useState<BundleTier>(1);
   const [selected, setSelected]       = useState<Set<string>>(new Set([product.slug]));
   const [scentOpen, setScentOpen]     = useState(false);
 
@@ -80,14 +71,8 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
   const [form,        setForm]        = useState({ name: '', phone: '', address: '', payment: 'cash' });
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof typeof form, string>>>({});
 
-  const unitPrice = bundleUnitPrice(price, tier);
-  const total     = unitPrice * selected.size;
-
-  const bundleOptions: { t: BundleTier; label: string; badge: string | null }[] = [
-    { t: 1, label: i18n.bottle1, badge: null },
-    { t: 2, label: i18n.bottle2, badge: '12% OFF' },
-    { t: 3, label: i18n.bottle3, badge: '31% OFF' },
-  ];
+  const unitPrice = price;
+  const total     = price * selected.size;
 
   function toggleScent(slug: string) {
     setSelected(prev => {
@@ -95,22 +80,10 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
       if (next.has(slug)) {
         if (next.size > 1) next.delete(slug);
       } else {
-        if (next.size < tier) {
-          next.add(slug);
-        } else {
-          const arr  = Array.from(next);
-          const drop = arr.find(s => s !== product.slug) ?? arr[0];
-          next.delete(drop);
-          next.add(slug);
-        }
+        next.add(slug);
       }
       return next;
     });
-  }
-
-  function changeTier(t: BundleTier) {
-    setTier(t);
-    setSelected(prev => new Set(Array.from(prev).slice(0, t)));
   }
 
   function validate() {
@@ -261,39 +234,22 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
             </div>
           )}
 
-          {/* ── bundle pricing (redesigned as visual cards) ──────────── */}
-          <div>
-            <p className="text-[11px] font-black font-sans text-gray-400 uppercase tracking-widest mb-3">{i18n.bundleSave}</p>
-            <div className="grid grid-cols-3 gap-2.5">
-              {bundleOptions.map(({ t, label, badge }) => (
-                <button
-                  key={t}
-                  onClick={() => changeTier(t)}
-                  className={`relative flex flex-col items-center justify-center py-4 px-2 rounded-2xl border-2 transition-all duration-200 ${
-                    tier === t
-                      ? 'bg-[var(--color-primary)] border-[var(--color-primary)] shadow-lg'
-                      : 'bg-white border-gray-200 hover:border-gray-400'
-                  }`}
-                >
-                  {badge && (
-                    <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[var(--color-primary)] text-white text-[9px] font-black font-sans px-2 py-0.5 rounded-full whitespace-nowrap">
-                      {badge}
-                    </span>
-                  )}
-                  <span className={`text-[26px] font-black font-sans leading-none mb-1 ${tier === t ? 'text-white' : 'text-[#0F0F0F]'}`}>
-                    {t}x
-                  </span>
-                  <span className={`text-[10px] font-sans leading-tight text-center mb-1.5 ${tier === t ? 'text-gray-400' : 'text-gray-400'}`}>
-                    {label}
-                  </span>
-                  <span className={`text-[12px] font-bold font-sans ${tier === t ? 'text-white' : 'text-[#0F0F0F]'}`}>
-                    {bundleUnitPrice(price, t).toFixed(2)} MAD
-                    <span className={`text-[9px] font-normal ml-0.5 ${tier === t ? 'text-gray-400' : 'text-gray-400'}`}>{i18n.perUnit}</span>
-                  </span>
-                </button>
-              ))}
+          {/* ── Offers ───────────────────────────────────────────────── */}
+          {product.offers.length > 0 && (
+            <div>
+              <p className="text-[11px] font-black font-sans text-gray-400 uppercase tracking-widest mb-3">{i18n.offers}</p>
+              <div className="flex flex-col gap-2">
+                {product.offers.map((offer, i) => (
+                  <div key={i} className="flex items-center gap-2.5 bg-[#F0FFF8] border border-[#C6F6E6] rounded-xl px-4 py-3">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00A17C" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20,6 9,17 4,12"/>
+                    </svg>
+                    <span className="text-sm font-bold font-sans text-[#007A5E]">{offer}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* ── scent selector ──────────────────────────────────────────── */}
           <div>
@@ -302,7 +258,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
                 {i18n.selectScents}
               </p>
               <span className="text-[11px] font-sans text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">
-                {selected.size} / {tier}
+                {selected.size} {selected.size !== 1 ? i18n.scents : i18n.scent}
               </span>
             </div>
 

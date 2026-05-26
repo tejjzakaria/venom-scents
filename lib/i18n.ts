@@ -20,6 +20,7 @@ export type Translations = {
   product: {
     breadcrumbHome: string; breadcrumbShop: string;
     bundleSave: string; bottle1: string; bottle2: string; bottle3: string; perUnit: string;
+    offers: string;
     selectScents: string; scentNotes: string;
     checkoutTitle: string; checkoutSub: string;
     added: string; add: string;
@@ -78,6 +79,7 @@ const dict: Record<Locale, Translations> = {
     product: {
       breadcrumbHome: 'Home', breadcrumbShop: 'Shop',
       bundleSave: 'Bundle & Save', bottle1: '1 Bottle', bottle2: '2 Bottles', bottle3: '3 Bottles', perUnit: '/ea',
+      offers: 'Offers',
       selectScents: 'Make Your Selection', scentNotes: 'Product Details',
       checkoutTitle: 'Complete Your Order', checkoutSub: 'Fast delivery · Secure checkout',
       added: 'Added', add: 'Add',
@@ -136,6 +138,7 @@ const dict: Record<Locale, Translations> = {
     product: {
       breadcrumbHome: 'Accueil', breadcrumbShop: 'Boutique',
       bundleSave: 'Offre groupée', bottle1: '1 Flacon', bottle2: '2 Flacons', bottle3: '3 Flacons', perUnit: '/un',
+      offers: 'Offres',
       selectScents: 'Faites votre sélection', scentNotes: 'Détails du produit',
       checkoutTitle: 'Finalisez votre commande', checkoutSub: 'Livraison rapide · Paiement sécurisé',
       added: 'Ajouté', add: 'Ajouter',
@@ -194,6 +197,7 @@ const dict: Record<Locale, Translations> = {
     product: {
       breadcrumbHome: 'الرئيسية', breadcrumbShop: 'المتجر',
       bundleSave: 'حزم وتوفير', bottle1: 'زجاجة واحدة', bottle2: 'زجاجتان', bottle3: '3 زجاجات', perUnit: '/للوحدة',
+      offers: 'العروض',
       selectScents: 'اختر خياراتك', scentNotes: 'تفاصيل المنتج',
       checkoutTitle: 'أكمل طلبك', checkoutSub: 'توصيل سريع · دفع آمن',
       added: 'تمت الإضافة', add: 'أضف',
