@@ -11,7 +11,7 @@ const DEFAULT_STATS = [
   { percent: "93%", text: "noticed they received instant compliments after first wearing it." },
 ];
 
-const testimonials = [
+const DEFAULT_TESTIMONIALS = [
   { video: "/images/video-review1.mp4", quote: "This has become a daily essential for me. It's worth every penny." },
   { video: "/images/video-review2.mp4", quote: "One of my favourite products. Absolutely love it." },
   { video: "/images/video-review3.mp4", quote: "I've never experienced something like this before. Simply amazing." },
@@ -19,11 +19,12 @@ const testimonials = [
 
 const Testimonials: React.FC<Props> = ({ content }) => {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const [playingStates, setPlayingStates] = useState<boolean[]>([false, false, false]);
+  const [playingStates, setPlayingStates] = useState<boolean[]>([]);
 
   const headlineBold   = content?.headlineBold   ?? "Women";
   const headlineItalic = content?.headlineItalic ?? "Speak up";
   const stats          = content?.stats          ?? DEFAULT_STATS;
+  const items          = content?.items?.length ? content.items : DEFAULT_TESTIMONIALS;
 
   const handlePlayPause = (index: number) => {
     const video = videoRefs.current[index];
@@ -54,7 +55,7 @@ const Testimonials: React.FC<Props> = ({ content }) => {
         <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-10 lg:gap-12">
           <div className="lg:col-span-1">
             <div className="flex gap-4 overflow-x-auto pb-4 px-2 lg:px-0 snap-x snap-mandatory">
-              {testimonials.map((t, index) => (
+              {items.map((t, index) => (
                 <div key={index} className="flex-shrink-0 w-[160px] md:w-[200px] snap-start flex flex-col">
                   <div className="relative aspect-[9/16] rounded-xl overflow-hidden mb-3 flex-shrink-0">
                     <video

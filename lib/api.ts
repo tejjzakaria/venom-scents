@@ -21,6 +21,7 @@ export type StoreContent = {
       headlineBold?:   string;
       headlineItalic?: string;
       stats?: Array<{ percent: string; text: string }>;
+      items?: Array<{ video: string; quote: string }>;
     };
     benefits?: {
       headlineBold?:   string;
