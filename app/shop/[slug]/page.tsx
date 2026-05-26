@@ -16,15 +16,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 // ─── How to Use ──────────────────────────────────────────────────────────────
 
 const DEFAULT_HOW_TO_USE_STEPS = [
-  { step: "01", title: "Choose Pulse Points", description: "Apply to wrists, neck, and behind the ears for maximum projection and longevity." },
-  { step: "02", title: "Don't Rub — Let It Breathe", description: "Rubbing breaks the fragrance molecules. Let the scent dry naturally on your skin." },
-  { step: "03", title: "Layer for All-Day Wear", description: "Start with an unscented moisturiser to lock in the scent and extend wear throughout the day." },
-  { step: "04", title: "Store Correctly", description: "Keep your bottle away from heat and direct light — a cool, dark spot preserves the fragrance for longer." },
+  { step: "01", title: "Read the Guidelines", description: "Check the product instructions before first use to get the best possible results." },
+  { step: "02", title: "Start Small", description: "Begin with a small amount and adjust based on your preference and needs." },
+  { step: "03", title: "Use Consistently", description: "Regular use delivers the best and most lasting results — make it part of your routine." },
+  { step: "04", title: "Store Safely", description: "Keep in a cool, dry place away from direct sunlight to preserve quality and extend shelf life." },
 ];
 
 function HowToUse({ content }: { content?: NonNullable<StoreContent['product']>['howToUse'] }) {
   const eyebrow  = content?.eyebrow  ?? "Application Guide";
-  const headline = content?.headline ?? "How to Get the Most Out of Your Scent";
+  const headline = content?.headline ?? "How to Get the Most Out of Your Product";
   const steps    = content?.steps    ?? DEFAULT_HOW_TO_USE_STEPS;
 
   return (
@@ -59,14 +59,14 @@ const WHY_ICONS = [
 ];
 
 const DEFAULT_WHY_ITEMS = [
-  { title: "Pheromone-Infused Formula", description: "Our signature blend enhances your natural chemistry for an irresistible, magnetic effect." },
-  { title: "12+ Hour Longevity",        description: "Engineered to last from morning to midnight without a single reapplication." },
-  { title: "Vegan & Cruelty-Free",      description: "No animal testing, no compromise. Beauty that feels as good as it smells." },
-  { title: "Premium Ingredients",       description: "Sourced from the world's finest fragrance houses, including Grasse, France." },
+  { title: "Premium Quality",       description: "Crafted with the finest materials sourced from trusted suppliers to ensure an exceptional experience." },
+  { title: "Long-Lasting Results",  description: "Engineered to deliver consistent performance from first use to last." },
+  { title: "Ethically Made",        description: "No shortcuts on quality or ethics — products that feel as good as they perform." },
+  { title: "Expert Craftsmanship",  description: "Made by experts with deep knowledge and uncompromising attention to detail." },
 ];
 
 function WhyVenom({ content }: { content?: NonNullable<StoreContent['product']>['whyUs'] }) {
-  const eyebrow  = content?.eyebrow  ?? "Why Venom";
+  const eyebrow  = content?.eyebrow  ?? "Why Choose Us";
   const headline = content?.headline ?? "Crafted to a Different Standard";
   const items    = content?.items    ?? DEFAULT_WHY_ITEMS;
 

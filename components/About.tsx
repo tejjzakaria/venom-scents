@@ -5,8 +5,8 @@ import type { StoreContent } from '../lib/api';
 type Props = { content?: NonNullable<StoreContent['home']>['about'] };
 
 const About: React.FC<Props> = ({ content }) => {
-  const headline    = content?.headline ?? "About Venom";
-  const body        = content?.body     ?? "At Venom, we're more than just a perfume brand, we're a movement. We're redefining what it means to wear a fragrance that empowers you to own every moment and make it yours.";
+  const headline    = content?.headline ?? "About Us";
+  const body        = content?.body     ?? "We're more than just a brand — we're a movement. Redefining what it means to discover products that empower you to own every moment and make it yours.";
   const ctaText     = content?.ctaText  ?? "Shop Now";
   const aboutImage  = content?.image    ?? '/images/about.webp';
 
@@ -18,7 +18,7 @@ const About: React.FC<Props> = ({ content }) => {
             <div className="relative overflow-hidden rounded-xl border border-[#F5E6E6] w-full">
               <Image
                 src={aboutImage}
-                alt="About Venom"
+                alt="About us"
                 width={800}
                 height={1000}
                 style={{ objectFit: 'cover', width: '100%', height: 'auto' }}

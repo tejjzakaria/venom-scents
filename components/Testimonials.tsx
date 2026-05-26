@@ -13,8 +13,8 @@ const DEFAULT_STATS = [
 
 const testimonials = [
   { video: "/images/video-review1.mp4", quote: "This has become a daily essential for me. It's worth every penny." },
-  { video: "/images/video-review2.mp4", quote: "One of my favourite perfumes. Very sexy, very feminine." },
-  { video: "/images/video-review3.mp4", quote: "I've never smelt something like this before. It's not overpowering." },
+  { video: "/images/video-review2.mp4", quote: "One of my favourite products. Absolutely love it." },
+  { video: "/images/video-review3.mp4", quote: "I've never experienced something like this before. Simply amazing." },
 ];
 
 const Testimonials: React.FC<Props> = ({ content }) => {
