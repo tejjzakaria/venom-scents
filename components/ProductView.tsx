@@ -52,18 +52,17 @@ function IconReturn() {
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
-export default function ProductView({ product, scents, locale = 'en' }: { product: Product; scents: Product[]; locale?: Locale }) {
-  const router    = useRouter();
-  const i18n      = getTranslations(locale).product;
-  const allScents = [product, ...scents];
-  const images    = product.images;
+export default function ProductView({ product, locale = 'en' }: { product: Product; locale?: Locale }) {
+  const router  = useRouter();
+  const i18n    = getTranslations(locale).product;
+  const images  = product.images;
   const price     = product.price;
   const rating    = parseFloat(product.rating) || 0;
   const reviewCount = parseInt(product.reviews, 10) || 0;
 
-  const [activeImg, setActiveImg]     = useState(0);
-  const [selected, setSelected]       = useState<Set<string>>(new Set([product.slug]));
-  const [scentOpen, setScentOpen]     = useState(false);
+  const [activeImg, setActiveImg]         = useState(0);
+  const [selectedOffer, setSelectedOffer] = useState<string | null>(product.offers[0] ?? null);
+  const [scentOpen, setScentOpen]         = useState(false);
 
   const [status,      setStatus]      = useState<Status>('idle');
   const [orderResult, setOrderResult] = useState<{ orderId: string; orderNumber: string } | null>(null);
@@ -71,20 +70,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
   const [form,        setForm]        = useState({ name: '', phone: '', address: '', payment: 'cash' });
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof typeof form, string>>>({});
 
-  const unitPrice = price;
-  const total     = price * selected.size;
-
-  function toggleScent(slug: string) {
-    setSelected(prev => {
-      const next = new Set(prev);
-      if (next.has(slug)) {
-        if (next.size > 1) next.delete(slug);
-      } else {
-        next.add(slug);
-      }
-      return next;
-    });
-  }
+  const total = price;
 
   function validate() {
     const errs: Partial<Record<keyof typeof form, string>> = {};
@@ -100,16 +86,15 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
     if (!validate()) return;
     setStatus('loading');
     try {
-      const selectedProducts = allScents.filter(s => selected.has(s.slug));
       const result = await placeOrder({
-        items: selectedProducts.map(p => ({
-          id:            p.id,
-          slug:          p.slug,
-          name:          p.name,
-          image:         p.images[0] ?? '',
-          originalPrice: p.originalPrice,
-        })),
-        unitPrice,
+        items: [{
+          id:            product.id,
+          slug:          product.slug,
+          name:          selectedOffer ? `${product.name} — ${selectedOffer}` : product.name,
+          image:         product.images[0] ?? '',
+          originalPrice: product.originalPrice,
+        }],
+        unitPrice: price,
         customer: form,
       });
       setOrderResult(result);
@@ -180,7 +165,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
           )}
         </div>
 
-        {/* ── RIGHT: info + bundle + scents + checkout card ────────────── */}
+        {/* ── RIGHT: info + offers + checkout card ────────────────────── */}
         <div className="flex flex-col gap-6">
 
           {/* rating */}
@@ -234,95 +219,36 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
             </div>
           )}
 
-          {/* ── Offers ───────────────────────────────────────────────── */}
+          {/* ── Offer selector ───────────────────────────────────────── */}
           {product.offers.length > 0 && (
             <div>
-              <p className="text-[11px] font-black font-sans text-gray-400 uppercase tracking-widest mb-3">{i18n.offers}</p>
+              <p className="text-[11px] font-black font-sans text-[#0F0F0F] uppercase tracking-widest mb-3">{i18n.selectScents}</p>
               <div className="flex flex-col gap-2">
-                {product.offers.map((offer, i) => (
-                  <div key={i} className="flex items-center gap-2.5 bg-[#F0FFF8] border border-[#C6F6E6] rounded-xl px-4 py-3">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00A17C" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20,6 9,17 4,12"/>
-                    </svg>
-                    <span className="text-sm font-bold font-sans text-[#007A5E]">{offer}</span>
-                  </div>
-                ))}
+                {product.offers.map((offer, i) => {
+                  const isSelected = selectedOffer === offer;
+                  return (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => setSelectedOffer(offer)}
+                      className={`flex items-center gap-3 px-4 py-3.5 rounded-xl border-2 text-start w-full transition-all duration-150 ${
+                        isSelected ? 'border-[var(--color-primary)] bg-[#FFF8F8]' : 'border-gray-200 bg-white hover:border-gray-300'
+                      }`}
+                    >
+                      <div className={`w-4 h-4 rounded-full border-2 flex-shrink-0 flex items-center justify-center ${
+                        isSelected ? 'border-[var(--color-primary)]' : 'border-gray-300'
+                      }`}>
+                        {isSelected && <div className="w-2 h-2 rounded-full bg-[var(--color-primary)]" />}
+                      </div>
+                      <span className={`text-sm font-bold font-sans ${isSelected ? 'text-[#0F0F0F]' : 'text-[#444444]'}`}>
+                        {offer}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}
-
-          {/* ── scent selector ──────────────────────────────────────────── */}
-          <div>
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-[11px] font-black font-sans text-[#0F0F0F] uppercase tracking-widest">
-                {i18n.selectScents}
-              </p>
-              <span className="text-[11px] font-sans text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">
-                {selected.size} {selected.size !== 1 ? i18n.scents : i18n.scent}
-              </span>
-            </div>
-
-            <div className="flex flex-col gap-2 max-h-[340px] overflow-y-auto pr-0.5">
-              {allScents.map(scent => {
-                const isSelected = selected.has(scent.slug);
-                const img        = scent.images[0] ?? null;
-                return (
-                  <div
-                    key={scent.slug}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-all duration-150 ${
-                      isSelected ? 'border-[var(--color-primary)] bg-[#FFF8F8]' : 'border-gray-200 bg-white hover:border-gray-300'
-                    }`}
-                  >
-                    <div className="w-11 h-11 flex-shrink-0 rounded-lg overflow-hidden bg-[#F0EAF8]">
-                      {img ? (
-                        /* eslint-disable-next-line @next/next/no-img-element */
-                        <img src={img} alt={scent.name} className="w-full h-full object-cover" />
-                      ) : (
-                        <div className="w-full h-full bg-[#E9E1ED]" />
-                      )}
-                    </div>
-
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-0.5">
-                        <span className="text-[12px] font-bold font-sans text-[#0F0F0F] leading-tight">{scent.name}</span>
-                        {scent.tag && (
-                          <span className={`text-[9px] font-bold font-sans uppercase tracking-wider ${
-                            scent.tag.toLowerCase().includes('new') ? 'text-[#00A17C]' : 'text-[var(--color-primary)]'
-                          }`}>
-                            {scent.tag}
-                          </span>
-                        )}
-                      </div>
-                      {scent.shortDesc && (
-                        <p className="text-[11px] font-sans text-gray-400 line-clamp-1">{scent.shortDesc}</p>
-                      )}
-                    </div>
-
-                    <button
-                      onClick={() => toggleScent(scent.slug)}
-                      className={`flex-shrink-0 flex items-center gap-1.5 text-[11px] font-bold font-sans px-3 py-1.5 rounded-full border transition-all duration-150 ${
-                        isSelected
-                          ? 'bg-[var(--color-primary)] text-white border-[var(--color-primary)]'
-                          : 'bg-white text-[#0F0F0F] border-gray-300 hover:border-[var(--color-primary)]'
-                      }`}
-                    >
-                      {isSelected ? (
-                        <>
-                          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20,6 9,17 4,12"/></svg>
-                          {i18n.added}
-                        </>
-                      ) : (
-                        <>
-                          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                          {i18n.add}
-                        </>
-                      )}
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
 
           {/* ── Checkout — floating card with deep shadow ────────────── */}
           <div className="rounded-3xl bg-white shadow-[0_20px_64px_rgba(0,0,0,0.14)] border border-gray-100 overflow-hidden mt-2">
@@ -351,7 +277,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
                     </p>
                   </div>
                   <button
-                    onClick={() => { setStatus('idle'); setSelected(new Set([product.slug])); }}
+                    onClick={() => setStatus('idle')}
                     className="text-xs font-bold font-sans text-[#0F0F0F] underline underline-offset-2 hover:text-[var(--color-primary)] transition-colors"
                   >
                     {i18n.placeAnother}
@@ -364,10 +290,10 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
 
                   {/* order summary */}
                   <div className="flex items-center justify-between bg-gray-50 rounded-xl px-4 py-3">
-                    <span className="text-sm font-sans text-gray-500">
-                      {selected.size} {selected.size !== 1 ? i18n.scents : i18n.scent} × {unitPrice.toFixed(2)} MAD
+                    <span className="text-sm font-sans text-gray-500 line-clamp-1 flex-1 me-3">
+                      {selectedOffer ?? product.name}
                     </span>
-                    <span className="font-black font-sans text-[#0F0F0F] text-[16px]">{total.toFixed(2)} MAD</span>
+                    <span className="font-black font-sans text-[#0F0F0F] text-[16px] flex-shrink-0">{total.toFixed(2)} MAD</span>
                   </div>
 
                   {/* error banner */}
@@ -431,7 +357,7 @@ export default function ProductView({ product, scents, locale = 'en' }: { produc
                   {/* submit */}
                   <button
                     type="submit"
-                    disabled={status === 'loading' || selected.size === 0}
+                    disabled={status === 'loading'}
                     className="w-full h-14 rounded-xl bg-[var(--color-primary)] text-white font-black font-sans text-[14px] tracking-widest uppercase hover:bg-[var(--color-primary-dark)] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-3 mt-1"
                   >
                     {status === 'loading' ? (

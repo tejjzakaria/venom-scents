@@ -185,7 +185,7 @@ export default async function ProductPage({
 
   return (
     <>
-      <ProductView product={product} scents={scents} locale={locale} />
+      <ProductView product={product} locale={locale} />
       <HowToUse   content={sc?.howToUse} />
       <WhyVenom   content={sc?.whyUs} />
       <RelatedProducts products={related} labels={pt} />
