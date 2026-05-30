@@ -121,7 +121,9 @@ export function resolveContent(store: StoreInfo | null, locale: Locale): StoreCo
 }
 
 export function getAvailableLocales(store: StoreInfo | null): Locale[] {
-  return Object.keys(store?.content ?? {}).filter((l): l is Locale => VALID_LOCALES.includes(l as Locale));
+  const contentLocales = Object.keys(store?.content ?? {}).filter((l): l is Locale => VALID_LOCALES.includes(l as Locale));
+  if (!store?.activeLocales?.length) return contentLocales;
+  return contentLocales.filter(l => store.activeLocales!.includes(l));
 }
 
 export type StorePixels = {
@@ -134,20 +136,21 @@ export type StorePixels = {
 };
 
 export type StoreInfo = {
-  _id:       string;
-  name:      string;
-  status:    'Active' | 'Paused' | 'Disconnected';
-  desc?:     string;
-  email?:    string;
-  phone?:    string;
-  country?:  string;
-  currency?: string;
-  color:     string;
-  initials:  string;
-  logo?:     string;
-  favicon?:  string;
-  pixels?:   StorePixels;
-  content?:  Record<string, StoreContent>;
+  _id:            string;
+  name:           string;
+  status:         'Active' | 'Paused' | 'Disconnected';
+  desc?:          string;
+  email?:         string;
+  phone?:         string;
+  country?:       string;
+  currency?:      string;
+  color:          string;
+  initials:       string;
+  logo?:          string;
+  favicon?:       string;
+  pixels?:        StorePixels;
+  content?:       Record<string, StoreContent>;
+  activeLocales?: string[];
 };
 
 export async function getStore(): Promise<StoreInfo | null> {
